@@ -1,0 +1,125 @@
+managed implementation in class zbp_i_vehin unique;
+strict ( 1 );
+with draft;
+
+
+define behavior for ZI_VEHIN_HEAD alias Head
+implementation in class zbp_i_vehin_head unique
+//persistent table zdt_vehin_head
+draft table zdt_vehin_head_d
+with unmanaged save
+lock master total etag LastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+
+{
+  create;
+  update ( features : instance );
+  delete ( features : instance );
+  association _Item { create ( features : instance ); }
+
+  action ( features : instance ) print;  //result [1] $self;
+  validation validateInward on save { create; update; }
+  internal action calcTotWeight;
+  action ( features : instance ) setOutward;
+
+  draft determine action Prepare
+  {
+    validation validateInward;
+  }
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  field ( numbering : managed, readonly ) Inward_Uuid;
+  field ( readonly ) Ticknum, Plant, Type, Fiscal, Range, grossweight, netweight, Intime, Indate, pwexitdt, pwexittm;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+  field ( mandatory ) intype, Drivnum, Vehnum, Orderhead;
+
+  determination defaultData on modify { field Intype; create; }
+  determination getOrderData on modify { field Orderhead; create; }
+  determination setItem on save { create; }
+  determination calculateTickNum on save { create; }
+
+  side effects
+  {
+    field Orderhead affects field Type;
+  }
+  mapping for zdt_vehin_head
+    {
+      Inward_Uuid        = inward_uuid;
+      Drivnum            = drivnum;
+      Indate             = indate;
+      Intime             = intime;
+      Intype             = intype;
+      Ticknum            = ticknum;
+      Vehnum             = vehnum;
+      Orderhead          = orderhead;
+      Orderhead1         = orderhead1;
+      Plant              = plant;
+      Type               = type;
+      range              = range;
+      Fiscal             = fiscal;
+      Dchannel           = dchannel;
+      GrossWeight        = grossweight;
+      NetWeight          = netweight;
+      CreatedAt          = created_at;
+      CreatedBy          = created_by;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      pwitime            = pwitime;
+      //      pwotime            = pwotime;
+    }
+}
+
+define behavior for ZI_VEHIN_ITEM alias Item
+implementation in class zbp_i_vehin_item unique
+//persistent table zdt_vehin_item
+draft table zdt_vehin_item_d
+with unmanaged save
+lock dependent by _Head
+authorization dependent by _Head
+etag master LocalLastChangedAt
+{
+  update ( features : instance );
+  delete ( features : instance );
+  field ( readonly ) inward_uuid;
+  field ( numbering : managed, readonly ) Item_Uuid;
+  field ( readonly ) CreatedBy, LastChangedBy, LocalLastChangedAt;
+  field ( readonly ) Bpcode, Bpname, Orderdate, brokername, Inwarditem, Quantity, GrossWeight, NetWeight, Matnr; //, Ordnumitem;
+  field ( mandatory ) Ordnum, Ordnumitem;
+  association _Head { with draft; }
+  field ( features : instance ) Ordnum, Ordnumitem;
+
+  validation validateOrder on save { create; update; }
+  determination setInwardType on modify { field Ordnum, Ordnumitem; create;  }
+  determination calcTotalWeight on save { create; update; delete; }
+
+  mapping for zdt_vehin_item
+    {
+      inward_uuid        = inward_uuid;
+      Item_Uuid          = item_uuid;
+      Inwarditem         = inwarditem;
+      Bpcode             = bpcode;
+      Bpname             = bpname;
+      Brokername         = brokername;
+      Orderdate          = orderdate;
+      Ordnum             = ordnum;
+      Quantity           = quantity;
+      uom                = uom;
+      GrossWeight        = grossweight;
+      NetWeight          = netweight;
+      intype             = intype;
+      Dchannel           = dchannel;
+      Plant              = plant;
+      Matnr              = matnr;
+      Ordnumitem         = ordnumitem;
+      CreatedBy          = created_by;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

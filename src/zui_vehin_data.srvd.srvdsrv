@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition Inward Vehicle Data'
+define service ZUI_VEHIN_DATA {
+  expose ZI_VEHIN_ITEM_DATA;
+  expose ZI_VEHIN_HEAD_DATA;
+}

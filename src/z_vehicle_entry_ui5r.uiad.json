@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Inward Vehicle Entry",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Inward Vehicle Entry"
+  },
+  "ui5AppDetails": {
+    "appId": "zvehicleentry"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_B1D67BC59C659CD18751C7EFC46662BD92D72ACE_TM",
+    "semanticObject": "VehicleEntry",
+    "action": "manage",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_B1D67BC59C659CD18751C7EFC46662BD92D72ACE_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Inward Vehicle Entry",
+        "subtitle": "Sale/Purchase"
+      }
+    }
+  ]
+}

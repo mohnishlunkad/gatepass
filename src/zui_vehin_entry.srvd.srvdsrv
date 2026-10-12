@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition Inward Entry App'
+define service ZUI_VEHIN_ENTRY {
+  expose ZC_VEHIN_HEAD;
+  expose ZC_VEHIN_ITEM;
+}

@@ -1,0 +1,112 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: { typeName: 'Vehicle Inward Entry',
+                typeNamePlural: 'Vehicle Inward Entry',
+                title: { type: #STANDARD, label: 'Inward Entry', value: 'Ticknum' } },
+    presentationVariant: [{ sortOrder: [{ by: 'Ticknum', direction:  #DESC }] }]
+
+}
+annotate view ZC_VEHIN_HEAD with
+{
+  @UI.facet: [ { id:            'InwardEntry',
+               purpose:         #STANDARD,
+               type:            #IDENTIFICATION_REFERENCE,
+               label:           'Inward Entry',
+               position:        10 },
+             { id:              'Order',
+               purpose:         #STANDARD,
+               type:            #LINEITEM_REFERENCE,
+               label:           'Order',
+               position:        20,
+               targetElement:   '_Item'} ]
+
+  @UI.hidden: true
+  // @UI:{ identification: [{ position: 1, label: 'Inward Entry UUID' }] }
+  // @EndUserText.label: 'Inward UUID'
+  Inward_Uuid;
+  @UI: {  lineItem:       [ { position: 10 } ],
+      identification: [ { position: 10 } ],
+      selectionField: [ { position: 10 } ] }
+  @EndUserText.label: 'Ticket Number'
+  Ticknum;
+  @UI: {  lineItem:       [ { position: 20 } ],
+      identification: [ { position: 20 } ],
+      selectionField: [ { position: 20 } ] }
+  @EndUserText.label: 'Inward Type'
+  Intype;
+  @UI: {  lineItem:       [ { position: 30 } ],
+      identification: [ { position: 30 } ] }
+  @EndUserText.label: 'Inward Date'
+  Indate;
+  @UI: {  lineItem:       [ { position: 40 } ],
+      identification: [ { position: 40 } ] }
+  @EndUserText.label: 'Inward Time'
+  Intime;
+  @UI: {  lineItem:       [ { position: 50 } ],
+      identification: [ { position: 50 } ] }
+  @EndUserText.label: 'Order Number'
+  Orderhead;
+  @UI: {  lineItem:       [ { position: 60 } ],
+      identification: [ { position: 60 } ] }
+  @EndUserText.label: 'Vehicle Number'
+  Vehnum;
+  @UI: {  lineItem:       [ { position: 70 } ],
+      identification: [ { position: 70 } ] }
+  @EndUserText.label: 'Driver Number'
+  Drivnum;
+  @UI: {  lineItem:       [ { position: 80 } ],
+      // identification: [ { position: 80 } ],
+      selectionField: [ { position: 30 } ] }
+  @EndUserText.label: 'Plant'
+  Plant;
+   @UI: { selectionField: [ { position: 40 } ] }
+  @EndUserText.label: 'Order Number'  
+  Orderhead1;
+  @UI: {  lineItem:       [ { position: 90 } ],
+      identification: [ { position: 80 } ]
+     }
+  @EndUserText.label: 'Order Type'
+  Type;
+  @UI: {  lineItem:       [ { position: 100 } ],
+      identification: [ { position: 90 } ]
+     }
+  @EndUserText.label: 'Total Gross Weight'
+  grossweight;
+  @UI: {  lineItem:       [ { position: 110 } ],
+      identification: [ { position: 100 } ]
+     }
+  @EndUserText.label: 'Total Net Weight'
+  netweight;
+  @UI: {  lineItem:       [ { position: 120 } ],
+      identification: [ { position: 110 } ]
+     }
+  @EndUserText.label: 'Outward Date'
+  pwexitdt;
+  @UI: {  lineItem:       [ { position: 130 } ],
+      identification: [ { position: 110 } ]
+     }
+  @EndUserText.label: 'Outward Time'
+  pwexittm;
+  @UI: {  lineItem:       [ 
+     {  type: #FOR_ACTION, dataAction: 'print', label: 'Print' }
+      ]
+    }
+  @EndUserText.label: 'Print Inward'
+  printform;
+  @UI: {  lineItem:       [ 
+     {  type: #FOR_ACTION, dataAction: 'setOutward', label: 'Outward'  }
+      ]
+    }
+  @EndUserText.label: 'Outward'
+  pwexit;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

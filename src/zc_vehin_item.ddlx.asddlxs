@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Order',
+                typeNamePlural: 'Orders',
+                title: { type: #STANDARD, value: 'Ordnum' } } }
+annotate view ZC_VEHIN_ITEM with
+{
+  @UI.facet: [ { id:         'Order',
+              purpose:       #STANDARD,
+              type:          #IDENTIFICATION_REFERENCE,
+              label:         'Order',
+              position:      10 }  ]
+
+  @UI: { identification: [ { position: 10, label: 'Item UUID'  } ] }
+  Item_Uuid;
+  @UI.hidden: true
+  inward_uuid;
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
+         identification: [ { position: 20 } ] }
+  @EndUserText.label: 'Item Number'
+  Inwarditem;
+
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
+  @EndUserText.label: 'Order Number'
+  Ordnum;
+  @UI: { lineItem:       [ { position: 40 } ],
+         identification: [ { position: 40 } ] }
+  @EndUserText.label: 'Order Item'
+  Ordnumitem;
+  @UI: { lineItem:       [ { position: 50 } ],
+         identification: [ { position: 50 } ] }
+  @EndUserText.label: 'Order Date'
+  Orderdate;
+  @UI: { lineItem:       [ { position: 60 } ],
+         identification: [ { position: 60 } ] }
+  @EndUserText.label: 'BP Code'
+  Bpcode;
+  @UI: { lineItem:       [ { position: 70 } ],
+         identification: [ { position: 70 } ] }
+  @EndUserText.label: 'BP Name'
+  Bpname;
+  @UI: { lineItem:       [ { position: 80 } ],
+         identification: [ { position: 80 } ] }
+  @EndUserText.label: 'Broker Name'
+  Brokername;
+  @UI: { lineItem:       [ { position: 90 } ],
+         identification: [ { position: 90 } ] }
+  @EndUserText.label: 'Quantity'
+  Quantity;
+  @UI: { lineItem:       [ { position: 100 } ],
+         identification: [ { position: 100 } ] }
+  @EndUserText.label: 'Gross Weight'
+  GrossWeight;
+  @UI: { lineItem:       [ { position: 110 } ],
+         identification: [ { position: 110 } ] }
+  @EndUserText.label: 'Net Weight'
+  NetWeight;
+  @UI: { identification: [ { position: 120 } ] }
+  @EndUserText.label: 'Material'
+  Matnr;
+
+  @UI.hidden: true
+  @EndUserText.label: 'Inward Type'
+  intype;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
